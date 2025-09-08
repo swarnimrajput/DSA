@@ -1,0 +1,28 @@
+/*The structure of the class is
+class SortedStack{
+public:
+    stack<int> s;
+    void sort();
+};
+*/
+void sortedinsert(stack<int>& s, int x) {
+    if (s.empty() || x > s.top()) {
+        s.push(x);
+        return;
+    }
+
+    int temp = s.top();
+    s.pop();
+    sortedinsert(s, x);
+    s.push(temp);
+}
+
+// Main recursive sort function
+void SortedStack::sort() {
+    if (!s.empty()) {
+        int x = s.top();
+        s.pop();
+        sort();  // Recursively sort the rest of the stack
+        sortedinsert(s, x); // Insert the current element in sorted order
+    }
+}
