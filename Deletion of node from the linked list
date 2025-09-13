@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+       node->val=node->next->val;
+       node->next=node->next->next;
+    }
+};
+
+
+/*Node* deleteTail(Node* head) {
+    // If the list is empty or has only one node, return NULL
+    if (head == NULL || head->next == NULL)
+        return NULL;
+    // Initialize a temporary pointer to traverse the list
+    Node* temp = head;
+    // Traverse to the second last node in the list
+    while (temp->next->next != NULL) {
+        temp = temp->next;
+    }
+    // Delete the last node
+    delete temp->next;
+    // Set the next of the second last node to nullptr, effectively removing the last node
+    temp->next = nullptr;
+    // Return the head of the modified list
+    return head;
+}*/
