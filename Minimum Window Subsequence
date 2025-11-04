@@ -1,0 +1,27 @@
+string minWindow(string s, string t)
+{
+	// Write your Code here
+	int str=-1,len=INT_MAX;
+	int n=s.size();
+	for(int i=0;i<n;i++){
+		if(s[i]==t[0]){
+			int l=i+1;
+			int r=1;
+		
+		while(l<s.size()&& r<t.size()){
+			if(s[l]==t[r]){
+				r++;
+			}
+			l++;
+		}
+		if(r>=t.size()){
+			if(l-i<len){
+				str=i;
+				len=l-i;
+			}
+		}
+	}
+	}
+	if(str==-1) return "";
+	return s.substr(str,len);
+}
