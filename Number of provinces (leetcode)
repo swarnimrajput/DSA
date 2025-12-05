@@ -1,0 +1,26 @@
+class Solution {
+public:
+void dfs(int currentCity, vector<vector<int>>& isConnected, vector<bool>& visited) {
+        visited[currentCity] = true; // Mark this city as checked
+
+        // Check every other city to see if there is a road
+        for (int neighbor = 0; neighbor < isConnected.size(); neighbor++) {
+            // If there is a connection AND we haven't visited that neighbor yet
+            if (isConnected[currentCity][neighbor] == 1 && !visited[neighbor]) {
+                dfs(neighbor, isConnected, visited); // Recursively explore the neighbor
+            }
+        }
+    }
+    int findCircleNum(vector<vector<int>>& isConnected) {
+        int n=isConnected.size();
+       vector<bool> visited(n, false);
+       int province=0;
+       for(int i=0;i<n;i++){
+        if(!visited[i]){
+            province++;
+            dfs(i,isConnected,visited);
+        }
+       }
+       return province;
+    }
+};
