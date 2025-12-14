@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans;
+        solve(0, nums, ans);
+        return ans;
+    }
+
+private:
+    void solve(int index, vector<int>& nums, vector<vector<int>>& ans) {
+        
+        if (index == nums.size()) {
+            ans.push_back(nums);
+            return;
+        }
+
+        // Loop through all possibilities for the current 'index'
+        for (int i = index; i < nums.size(); i++) {
+            // 1. CHOOSE: Swap the current element with the element at 'index'
+            // This places nums[i] into the 'index' position
+            swap(nums[index], nums[i]);
+
+            // 2. EXPLORE: Recurse for the next position
+            solve(index + 1, nums, ans);
+
+            // 3. BACKTRACK: Undo the swap
+            // We must return the array to its original state for the next iteration
+            swap(nums[index], nums[i]);
+        }
+    }
+};
