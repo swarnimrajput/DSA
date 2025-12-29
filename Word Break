@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool solve(int start, int &n, string &s, vector<int> &dp, unordered_set<string> &words) {
+
+        if(start == n)
+            return true;
+
+        if(dp[start] != -1) return dp[start];
+
+        string temp;
+        for(int i=start; i<n; i++) {
+            temp.push_back(s[i]);
+            if(words.count(temp)) {
+                bool ans = solve(i + 1, n, s, dp, words);
+                if(ans) return dp[start] = true;
+            }
+        }
+
+        return dp[start] = false;
+    }
+
+
+    bool wordBreak(string s, vector<string>& wordDict) {
+        int n = s.length();
+        unordered_set<string> words(wordDict.begin(), wordDict.end());
+        vector<int> dp(n+1, -1);
+        return solve(0, n, s, dp, words);
+    }
+};
