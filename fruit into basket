@@ -1,0 +1,10 @@
+                    m.erase(fruits[l]);
+                l++;
+            }
+
+            maxfruit = max(maxfruit, r - l + 1);
+        }
+
+        return maxfruit;
+    }
+};
