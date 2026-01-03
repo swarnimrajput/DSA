@@ -1,0 +1,21 @@
+class Solution {
+public:
+vector<vector<int>> result;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> currentcomb;
+        backtrack(candidates, target, 0, currentcomb);
+        return result;
+    }
+    void backtrack(vector<int>& candidates,int target,int start,vector<int> currentcomb){
+        if(target==0){
+            result.push_back(currentcomb);
+            return;
+        }
+        if(target<0)return;
+        for(int i=start;i<candidates.size();i++){
+            currentcomb.push_back(candidates[i]);
+            backtrack(candidates,target-candidates[i],i,currentcomb);
+            currentcomb.pop_back();
+        }
+    }
+};
